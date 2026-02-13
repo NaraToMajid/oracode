@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ORACODE — Bagikan Kode Mu!</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <h1>ORACODE</h1>
+                <p>Bagikan Kode Mu!</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <button class="nav-btn" onclick="showFeed()"><i class="fas fa-code"></i> Feed</button>
+                <button class="nav-btn" onclick="showUpload()"><i class="fas fa-upload"></i> Upload</button>
+                <button class="nav-btn" onclick="showProfile()"><i class="fas fa-user"></i> Profile</button>
+                <button class="nav-btn" id="authBtn" onclick="showAuthModal()"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent"></div>
+
+        <!-- Auth Modal -->
+        <div class="modal" id="authModal">
+            <div class="modal-content">
+                <h2 id="authTitle">Login</h2>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password">
+                </div>
+                <button class="btn" onclick="handleAuth()" id="authSubmit">Login</button>
+                <button class="btn btn-outline" onclick="toggleAuthMode()" id="authToggle">Register instead</button>
+                <button class="btn btn-outline" onclick="guestMode()"><i class="fas fa-user-secret"></i> Continue as Guest</button>
+                <button class="btn btn-outline" onclick="closeAuthModal()">Close</button>
+            </div>
+        </div>
+
+        <!-- Chat Modal -->
+        <div class="modal" id="chatModal">
+            <div class="modal-content" style="max-width: 600px;">
+                <div class="chat-section">
+                    <div class="chat-header">
+                        <h3 id="chatWith">Chat</h3>
+                        <button class="action-btn" onclick="closeChatModal()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+                        <button class="action-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
